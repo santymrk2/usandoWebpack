@@ -22,6 +22,7 @@ module.exports = {
             '@utils': path.resolve(__dirname, 'src/utils/'),
             '@templates': path.resolve(__dirname, 'src/templates/'),
             '@images': path.resolve(__dirname, 'src/assets/images'),
+            '@hooks': path.resolve(__dirname, 'src/hooks/'),
             '@styles': path.resolve(__dirname, 'src/styles/'),
         }
     },
@@ -51,7 +52,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
-                type: 'asset/resource'
+                type: 'asset/resource',
             },
             {
                 test: /\.(woff|woff2)$/,
@@ -89,7 +90,9 @@ module.exports = {
                 }
             ]
         }),
-        new Dotenv(),
+        new Dotenv({
+            path: '.env',
+        }),
         new CleanWebpackPlugin(),
     ],
     optimization: {
