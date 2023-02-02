@@ -8,8 +8,10 @@ const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
+    entry: {
+        main: './src/index.js',
+    },
+        output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         assetModuleFilename: 'assets/images/[hash][ext][query]',
@@ -91,7 +93,7 @@ module.exports = {
             ]
         }),
         new Dotenv({
-            path: '.env',
+            path: './.env',
         }),
         new CleanWebpackPlugin(),
     ],
@@ -101,5 +103,8 @@ module.exports = {
             new CssMinimizerPlugin(),
             new TerserPlugin(),
         ]
+    },
+    performance: {
+        hints: false
     }
 }
